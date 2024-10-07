@@ -32,7 +32,6 @@ public class ChatGPTAPI {
 
         Response response = client.newCall(request).execute();
         String responseBody = response.body().string();
-
         // Parse the response and extract the assistant's content
         JSONObject jsonResponse = new JSONObject(responseBody);
         String assistantResponse = jsonResponse

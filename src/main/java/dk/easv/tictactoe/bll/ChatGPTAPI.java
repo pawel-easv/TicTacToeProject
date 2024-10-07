@@ -9,7 +9,7 @@ public class ChatGPTAPI {
         OkHttpClient client = new OkHttpClient();
 
         String prompt = "My name is";
-        String apiKey = "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";
+        String apiKey = "";
 
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(mediaType, "{\"prompt\": \"" + prompt + "\"}");

@@ -33,6 +33,10 @@ public class TicTacViewController implements Initializable
     
     private static final String TXT_PLAYER = "Player: ";
     private IGameBoard game;
+    @FXML
+    private String player1Icon;
+    @FXML
+    private String player2Icon;
 
     /**
      * Event handler for the grid buttons
@@ -59,7 +63,7 @@ public class TicTacViewController implements Initializable
                 else
                 {
                     Button btn = (Button) event.getSource();
-                    String xOrO = player == 0 ? "X" : "O";
+                    String xOrO = player == 0 ? player1Icon : player2Icon;
                     btn.setText(xOrO);
                     setPlayer();
                 }
@@ -139,5 +143,10 @@ public class TicTacViewController implements Initializable
             Button btn = (Button) n;
             btn.setText("");
         }
+    }
+
+    public void setPlayerIcons(String player1Icon, String player2Icon) {
+        this.player1Icon = player1Icon;
+        this.player2Icon = player2Icon;
     }
 }

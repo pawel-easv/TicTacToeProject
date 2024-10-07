@@ -2,7 +2,10 @@
 package dk.easv.tictactoe.gui.controller;
 
 // Java imports
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +14,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-
 // Project imports
 import dk.easv.tictactoe.bll.GameBoard;
 import dk.easv.tictactoe.bll.IGameBoard;
@@ -30,15 +32,9 @@ public class TicTacViewController implements Initializable
 
     @FXML
     private GridPane gridPane;
-    
     private static final String TXT_PLAYER = "Player: ";
     private IGameBoard game;
-
-    /**
-     * Event handler for the grid buttons
-     *
-     * @param event
-     */
+    private int player = 0;
     @FXML
     private void handleButtonAction(ActionEvent event)
     {
@@ -48,13 +44,18 @@ public class TicTacViewController implements Initializable
             Integer col = GridPane.getColumnIndex((Node) event.getSource());
             int r = (row == null) ? 0 : row;
             int c = (col == null) ? 0 : col;
-            int player = game.getNextPlayer();
-            if (game.play(c, r))
+            player = game.getNextPlayer(player);
+            if (game.play(c, r, player))
             {
                 if (game.isGameOver())
                 {
+                    Button btn = (Button) event.getSource();
+                    String xOrO = player == 0 ? "X" : "O";
+                    btn.setText(xOrO);
+                    setPlayer();
                     int winner = game.getWinner();
                     displayWinner(winner);
+
                 }
                 else
                 {
@@ -106,7 +107,7 @@ public class TicTacViewController implements Initializable
      */
     private void setPlayer()
     {
-        lblPlayer.setText(TXT_PLAYER + game.getNextPlayer());
+        lblPlayer.setText(TXT_PLAYER + game.getNextPlayer(player));
     }
 
 
@@ -122,6 +123,7 @@ public class TicTacViewController implements Initializable
             case -1:
                 message = "It's a draw :-(";
                 break;
+
             default:
                 message = "Player " + winner + " wins!!!";
                 break;
@@ -141,3 +143,4 @@ public class TicTacViewController implements Initializable
         }
     }
 }
+

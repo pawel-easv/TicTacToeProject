@@ -9,12 +9,12 @@ public class ChatGPTAPI {
     public static void main(String[] args) throws Exception {
         OkHttpClient client = new OkHttpClient();
 
-        String apiKey = "sk-4vcxPfim61LIPa_EC3TkJ9Kfw9PBl60m8V9XVZ0wqPT3BlbkFJhlr_Lz56T_57EVGnLFojEAyqRtjJN72PcPGOPEUaQA";  // Replace with your actual API key
-        String prompt = "{{1,1,0},{-1,1,0},{-1,-1,-1}} this is TitTacToe board representation, where the first the  curly brackets represent each row.Return the row(0-2) and column(0-2) of the best move for player 1 (X) in this format: ROW_NUMBER, COLUMN_NUMBER";
+        String apiKey = "";  // Replace with your actual API key
+        String prompt = "{{1, 1, 0}, {-1, 1, 0}, {-1, -1, -1}} is a Tic-Tac-Toe board where -1 is a blank space, 0 is O (circle), and 1 is X (cross). Return the row (0-2) and column (0-2) of the best move for player X (1). Format your answer as: ROW_NUMBER, COLUMN_NUMBER. dont add anything else";
 
         MediaType mediaType = MediaType.parse("application/json");
         String jsonBody = "{\n" +
-                "  \"model\": \"gpt-3.5-turbo\",\n" +
+                "  \"model\": \"gpt-4o\",\n" +
                 "  \"messages\": [\n" +
                 "    {\"role\": \"user\", \"content\": \"" + prompt + "\"}\n" +
                 "  ],\n" +

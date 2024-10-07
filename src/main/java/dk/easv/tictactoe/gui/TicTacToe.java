@@ -7,6 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+//import dk.easv.tictactoe.bll.ChatGPTAPI;
+
+import java.sql.SQLOutput;
 
 /**
  *
@@ -33,6 +36,7 @@ public class TicTacToe extends Application
         stage.centerOnScreen();
 
         stage.show();
+
     }
 
     /**

@@ -7,16 +7,20 @@ package dk.easv.tictactoe.bll;
  */
 public class GameBoard implements IGameBoard
 {
-
+    private int[][] board = {{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
+    private int currentPlayer;
+    private int currentTurn = 0;
+    private boolean hasDrawn = false;
     /**
      * Returns 0 for player 0, 1 for player 1.
      *
      * @return int Id of the next player.
      */
-    public int getNextPlayer()
+    public int getNextPlayer(int player)
     {
-        //TODO Implement this method
-        return 0;
+        player = player == 0 ? 1 : 0;
+        currentPlayer = player;
+        return player;
     }
 
     /**
@@ -29,10 +33,15 @@ public class GameBoard implements IGameBoard
      * @return true if the move is accepted, otherwise false. If gameOver == true
      * this method will always return false.
      */
-    public boolean play(int col, int row)
+    public boolean play(int col, int row, int player)
     {
-        //TODO Implement this method
-        return true;
+        if (board[col][row] == -1)
+        {
+            board[col][row] = player;
+            currentTurn++;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -43,10 +52,32 @@ public class GameBoard implements IGameBoard
      */
     public boolean isGameOver()
     {
-        //TODO Implement this method
+        for (int i = 0; i<3; i++)
+        {
+            if(board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0] != -1)
+            {
+                return true;
+            }
+            else if (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] != -1)
+            {
+                return true;
+            }
+        }
+        if (board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] != -1)
+        {
+            return true;
+        }
+        if (board[0][2] == board [1][1] && board[0][2] == board[2][0] && board[0][2] != -1)
+        {
+            return true;
+        }
+        if(currentTurn >= 9)
+        {
+            hasDrawn = true;
+            return true;
+        }
         return false;
     }
-
     /**
      * Gets the id of the winner, -1 if its a draw.
      *
@@ -54,8 +85,8 @@ public class GameBoard implements IGameBoard
      */
     public int getWinner()
     {
-        //TODO Implement this method
-        return -1;
+        if (hasDrawn) return -1;
+        return currentPlayer;
     }
 
     /**
@@ -63,6 +94,8 @@ public class GameBoard implements IGameBoard
      */
     public void newGame()
     {
-        //TODO Implement this method
+        board = new int[][]{{-1, -1, -1}, {-1, -1, -1}, {-1, -1, -1}};
+        currentTurn = 0;
+        hasDrawn = false;
     }
 }

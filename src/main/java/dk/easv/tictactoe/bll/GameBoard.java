@@ -1,8 +1,6 @@
 
 package dk.easv.tictactoe.bll;
 
-import sun.net.www.http.HttpClient;
-
 /**
  *
  * @author EASV
@@ -64,23 +62,22 @@ public class GameBoard implements IGameBoard
             {
                 return true;
             }
-            else if (board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] != -1)
-            {
-                return true;
-            }
-            else if (board[0][2] == board [1][1] && board[0][2] == board[2][0] && board[0][2] != -1)
-            {
-                return true;
-            }
-            else if(currentTurn >= 9)
-            {
-                hasDrawn = true;
-                return true;
-            }
+        }
+        if (board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] != -1)
+        {
+            return true;
+        }
+        if (board[0][2] == board [1][1] && board[0][2] == board[2][0] && board[0][2] != -1)
+        {
+            return true;
+        }
+        if(currentTurn >= 9)
+        {
+            hasDrawn = true;
+            return true;
         }
         return false;
     }
-
     /**
      * Gets the id of the winner, -1 if its a draw.
      *
@@ -97,6 +94,8 @@ public class GameBoard implements IGameBoard
      */
     public void newGame()
     {
-        //TODO Implement this method
+        board = new int[][]{{-1, -1, -1}, {-1, -1, -1}, {-1, -1, -1}};
+        currentTurn = 0;
+        hasDrawn = false;
     }
 }

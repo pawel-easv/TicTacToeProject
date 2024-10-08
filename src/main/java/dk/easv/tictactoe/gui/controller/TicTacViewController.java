@@ -37,6 +37,10 @@ public class TicTacViewController implements Initializable
     private int player = 0;
     private boolean hasEnded = false;
     @FXML
+    private String player1Icon;
+    @FXML
+    private String player2Icon;
+    @FXML
     private void handleButtonAction(ActionEvent event)
     {
         try
@@ -50,7 +54,7 @@ public class TicTacViewController implements Initializable
                 if (!hasEnded)
                 {
                     Button btn = (Button) event.getSource();
-                    String xOrO = player == 0 ? "X" : "O";
+                    String xOrO = player == 0 ? player1Icon : player2Icon;
                     btn.setText(xOrO);
                     setPlayer();
                 if (game.isGameOver()) {
@@ -137,6 +141,11 @@ public class TicTacViewController implements Initializable
             Button btn = (Button) n;
             btn.setText("");
         }
+    }
+
+    public void setPlayerIcons(String player1Icon, String player2Icon) {
+        this.player1Icon = player1Icon;
+        this.player2Icon = player2Icon;
     }
 }
 

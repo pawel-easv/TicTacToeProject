@@ -36,28 +36,18 @@ public class ComputerModeController implements Initializable
     @FXML
     private Button btnNewGame;
 
-    @FXML private Button btn1;
-    @FXML private Button btn2;
-    @FXML private Button btn3;
-    @FXML private Button btn4;
-    @FXML private Button btn5;
-    @FXML private Button btn6;
-    @FXML private Button btn7;
-    @FXML private Button btn8;
-    @FXML private Button btn9;
-    private List<Button> buttons = new ArrayList<>();
-    
     @FXML private GridPane gridPane;
     @FXML private String player1Icon;
     @FXML private String player2Icon;
 
     private IGameBoard game;
-    private BestMoveCalculator calculator = new BestMoveCalculator();
     private boolean hasEnded = false;
 
     private static final String TXT_PLAYER = "Player: ";
     private final int PLAYER = 0;
     private final int COMPUTER = 1;
+    private final BestMoveCalculator calculator = new BestMoveCalculator();
+    private final List<Button> buttons = new ArrayList<>();
 
     @FXML
     private void handleButtonAction(ActionEvent event)

@@ -29,6 +29,8 @@ public interface IGameBoard
     int getWinner();
     void newGame();
 
+    int[][] getBoard();
+
 
     void setScore(int winner);
 

@@ -1,3 +1,4 @@
+
 package dk.easv.tictactoe.gui.controller;
 
 // Java imports
@@ -23,8 +24,12 @@ import dk.easv.tictactoe.bll.IGameBoard;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 
-
+/**
+ *
+ * @author EASV
+ */
 public class TicTacViewController implements Initializable
 {
     @FXML
@@ -178,6 +183,11 @@ public class TicTacViewController implements Initializable
             Button btn = (Button) n;
             btn.setText("");
         }
+    }
+
+    public void setPlayerIcons(String player1Icon, String player2Icon) {
+        this.player1Icon = player1Icon;
+        this.player2Icon = player2Icon;
     }
 
     public void setCurrentPlayer(Integer player){

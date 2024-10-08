@@ -27,9 +27,8 @@ public class BestMoveCalculator {
         }
         return false;
     }
-
     public int evaluate(int[][] board) {
-        for (int row = 0; row < 3; row++) {
+        for (int row = 0; row < 3; row++) { //check if someone won in rows
             if (board[row][0] == board[row][1] && board[row][1] == board[row][2]) {
                 if (board[row][0] == computer) {
                     return +10;
@@ -39,7 +38,7 @@ public class BestMoveCalculator {
             }
         }
 
-        for (int col = 0; col < 3; col++) {
+        for (int col = 0; col < 3; col++) {//check if someone won in columns
             if (board[0][col] == board[1][col] && board[1][col] == board[2][col]) {
                 if (board[0][col] == computer) {
                     return +10;
@@ -48,7 +47,7 @@ public class BestMoveCalculator {
                 }
             }
         }
-
+        //check if someone won in diagonals
         if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
             if (board[0][0] == computer) {
                 return +10;
@@ -67,8 +66,9 @@ public class BestMoveCalculator {
 
         return 0;
     }
-
-    public int minimax(int[][] board, int depth, boolean isMax) {
+    // This method evaluates move, it simulates potential continuation till the game is ended by
+    // one of the sides, and returns the best possible outcome
+    public int minimax(int[][] board, boolean isMax) {
         int score = evaluate(board);
 
         if (score == 10 || score == -10) {
@@ -84,7 +84,7 @@ public class BestMoveCalculator {
                     if (board[i][j] == -1) {
                         board[i][j] = computer;
 
-                        best = Math.max(best, minimax(board, depth + 1, false));
+                        best = Math.max(best, minimax(board, false));
                         board[i][j] = -1;
                     }
                 }
@@ -98,7 +98,7 @@ public class BestMoveCalculator {
                     if (board[i][j] == -1) {
                         board[i][j] = player;
 
-                        best = Math.min(best, minimax(board, depth + 1, true));
+                        best = Math.min(best, minimax(board,true));
 
                         board[i][j] = -1;
                     }
@@ -108,7 +108,7 @@ public class BestMoveCalculator {
         }
     }
     public int[] findBestMove(int[][] board, int computer) {
-        int bestVal = -1000;
+        int bestVal = Integer.MIN_VALUE;
         this.computer = computer;
         this.player = computer == 0 ? 1 : 0;
         Move bestMove = new Move();
@@ -120,13 +120,13 @@ public class BestMoveCalculator {
                 if (board[i][j] == -1) {
                     board[i][j] = computer;
 
-                    int moveVal = minimax(board, 0, false);
+                    int moveVal = minimax(board, false); // evaluates the value of each move
 
-                    board[i][j] = -1;
+                    board[i][j] = -1; // resets the board
 
-                    if (moveVal > bestVal) {
-                        bestMove.row = i;
-                        bestMove.col = j;
+                    if (moveVal > bestVal) { // checks if the value of current move is higher
+                        bestMove.row = i;   // than current highest value, if yes,
+                        bestMove.col = j;  // sets the highest value to the current move's value
                         bestVal = moveVal;
                     }
                 }

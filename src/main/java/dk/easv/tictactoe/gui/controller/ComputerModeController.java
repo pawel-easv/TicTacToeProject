@@ -29,6 +29,7 @@ import javafx.scene.media.MediaPlayer;
  */
 public class ComputerModeController implements Initializable
 {
+
     @FXML
     private Label lblPlayer;
 
@@ -45,18 +46,19 @@ public class ComputerModeController implements Initializable
     @FXML private Button btn8;
     @FXML private Button btn9;
     private List<Button> buttons = new ArrayList<>();
-    @FXML
-    private GridPane gridPane;
-    private static final String TXT_PLAYER = "Player: ";
+    
+    @FXML private GridPane gridPane;
+    @FXML private String player1Icon;
+    @FXML private String player2Icon;
+
     private IGameBoard game;
     private BestMoveCalculator calculator = new BestMoveCalculator();
-    private int player = 0;
-    private int ai = 1;
     private boolean hasEnded = false;
-    @FXML
-    private String player1Icon;
-    @FXML
-    private String player2Icon;
+
+    private static final String TXT_PLAYER = "Player: ";
+    private final int PLAYER = 0;
+    private final int COMPUTER = 1;
+
     @FXML
     private void handleButtonAction(ActionEvent event)
     {
@@ -66,32 +68,22 @@ public class ComputerModeController implements Initializable
             Integer col = GridPane.getColumnIndex((Node) event.getSource());
             int r = (row == null) ? 0 : row;
             int c = (col == null) ? 0 : col;
-            if (game.play(r, c, player)) {
+            if (game.play(r, c, PLAYER))
+            {
                 if (!hasEnded)
                 {
                     Button btn = (Button) event.getSource();
-                    btn.setText(player1Icon);
-                    btn.setDisable(false);
-                    setPlayer();
-                    playClickSound();
-                    if (game.isGameOver()) {
-                        int winner = game.getWinner();
-                        displayWinner(winner);
-                        hasEnded = true;
+                    playerMove(btn);
+                    if (game.isGameOver())
+                    {
+                        gameOver();
                     }
-                    else{
-                        int[] bestMove = calculator.findBestMove(game.getBoard());
-                        int bestRow = bestMove[0];
-                        int bestCol = bestMove[1];
-                        game.play(bestRow, bestCol, ai);
-                        int buttonIndex = bestRow*3 + bestCol;
-                        playClickSound();
-                        buttons.get(buttonIndex).setText(player2Icon);
-                        buttons.get(buttonIndex).setDisable(false);
-                        if (game.isGameOver()) {
-                            int winner = game.getWinner();
-                            displayWinner(winner);
-                            hasEnded = true;
+                    else
+                    {
+                        enemyMove();
+                        if (game.isGameOver())
+                        {
+                            gameOver();
                         }
                     }
                 }
@@ -116,11 +108,6 @@ public class ComputerModeController implements Initializable
         }
     }
 
-    /**
-     * Event handler for starting a new game
-     *
-     * @param event
-     */
     @FXML
     private void handleNewGame(ActionEvent event)
     {
@@ -130,17 +117,6 @@ public class ComputerModeController implements Initializable
         clearBoard();
     }
 
-    /**
-     * Initializes a new controller
-     *
-     * @param url
-     * The location used to resolve relative paths for the root object, or
-     * {@code null} if the location is not known.
-     *
-     * @param rb
-     * The resources used to localize the root object, or {@code null} if
-     * the root object was not localized.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -153,19 +129,12 @@ public class ComputerModeController implements Initializable
         setPlayer();
     }
 
-    /**
-     * Set the next player
-     */
     private void setPlayer()
     {
-        lblPlayer.setText(TXT_PLAYER + game.getNextPlayer(player));
+        lblPlayer.setText(TXT_PLAYER + game.getNextPlayer(PLAYER));
     }
 
 
-    /**
-     * Finds a winner or a draw and displays a message based
-     * @param winner
-     */
     private void displayWinner(int winner)
     {
         String message = "";
@@ -182,9 +151,6 @@ public class ComputerModeController implements Initializable
         lblPlayer.setText(message);
     }
 
-    /**
-     * Clears the game board in the GUI
-     */
     private void clearBoard()
     {
         for(Node n : gridPane.getChildren())
@@ -197,5 +163,28 @@ public class ComputerModeController implements Initializable
     public void setPlayerIcons(String player1Icon, String player2Icon) {
         this.player1Icon = player1Icon;
         this.player2Icon = player2Icon;
+    }
+    private void playerMove(Button btn){
+        btn.setText(player1Icon);
+        btn.setDisable(false);
+        setPlayer();
+        playClickSound();
+    }
+
+    private void enemyMove(){
+        int[] bestMove = calculator.findBestMove(game.getBoard());
+        int bestRow = bestMove[0];
+        int bestCol = bestMove[1];
+        game.play(bestRow, bestCol, COMPUTER);
+        int buttonIndex = bestRow*3 + bestCol;
+        playClickSound();
+        buttons.get(buttonIndex).setText(player2Icon);
+        buttons.get(buttonIndex).setDisable(false);
+    }
+    private void gameOver()
+    {
+        int winner = game.getWinner();
+        displayWinner(winner);
+        hasEnded = true;
     }
 }

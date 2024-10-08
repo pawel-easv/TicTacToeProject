@@ -147,7 +147,8 @@ public class ComputerModeController implements Initializable
     }
 
     private void enemyMove(){
-        int[] bestMove = calculator.findBestMove(game.getBoard());
+        //int[] bestMove = calculator.findBestMove(game.getBoard(), COMPUTER);
+        int[] bestMove = calculator.findBestMove(game.getBoard(), COMPUTER);
         int bestRow = bestMove[0];
         int bestCol = bestMove[1];
         game.play(bestRow, bestCol, COMPUTER);

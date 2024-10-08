@@ -2,6 +2,7 @@
 package dk.easv.tictactoe.gui.controller;
 
 // Java imports
+import java.io.File;
 import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ import javafx.scene.layout.GridPane;
 // Project imports
 import dk.easv.tictactoe.bll.GameBoard;
 import dk.easv.tictactoe.bll.IGameBoard;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  *
@@ -57,6 +60,7 @@ public class TicTacViewController implements Initializable
                     String xOrO = player == 0 ? player1Icon : player2Icon;
                     btn.setText(xOrO);
                     setPlayer();
+                    playClickSound();
                 if (game.isGameOver()) {
                     int winner = game.getWinner();
                     displayWinner(winner);
@@ -67,6 +71,20 @@ public class TicTacViewController implements Initializable
         } catch (Exception e)
         {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void playClickSound() {
+        try {
+            // Load the sound file
+            String soundPath = "src/main/resources/sounds/btnClick.mp3";
+            Media sound = new Media(new File(soundPath).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+
+            // Play the sound
+            mediaPlayer.play();
+        } catch (Exception e) {
+            System.out.println("Error playing sound: " + e.getMessage());
         }
     }
 

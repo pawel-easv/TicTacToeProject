@@ -1,4 +1,3 @@
-
 package dk.easv.tictactoe.gui.controller;
 
 // Java imports
@@ -21,10 +20,6 @@ import dk.easv.tictactoe.bll.IGameBoard;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-/**
- *
- * @author EASV
- */
 public class TicTacViewController implements Initializable
 {
     @FXML
@@ -61,12 +56,12 @@ public class TicTacViewController implements Initializable
                     btn.setText(xOrO);
                     setPlayer();
                     playClickSound();
-                if (game.isGameOver()) {
-                    int winner = game.getWinner();
-                    displayWinner(winner);
-                    hasEnded = true;
+                    if (game.isGameOver()) {
+                        int winner = game.getWinner();
+                        displayWinner(winner);
+                        hasEnded = true;
+                    }
                 }
-            }
             }
         } catch (Exception e)
         {

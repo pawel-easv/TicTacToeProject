@@ -12,5 +12,7 @@ public interface IGameBoard
     boolean isGameOver();
     int getWinner();
     void newGame();
+
+    int[][] getBoard();
 }
 

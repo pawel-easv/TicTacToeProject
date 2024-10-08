@@ -18,11 +18,11 @@ public class GameBoard implements IGameBoard
         currentPlayer = player;
         return player;
     }
-    public boolean play(int col, int row, int player)
+    public boolean play(int row, int col, int player)
     {
-        if (board[col][row] == -1) //check if the cell is empty
+        if (board[row][col] == -1) //check if the cell is empty
         {
-            board[col][row] = player;
+            board[row][col] = player;
             currentTurn++;
             return true;
         }
@@ -69,5 +69,8 @@ public class GameBoard implements IGameBoard
         board = new int[][]{{-1, -1, -1}, {-1, -1, -1}, {-1, -1, -1}};
         currentTurn = 0;
         hasDrawn = false;
+    }
+    public int[][] getBoard(){
+        return board;
     }
 }

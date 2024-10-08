@@ -1,14 +1,10 @@
 
 package dk.easv.tictactoe.gui.controller;
-
-// Java imports
 import java.io.File;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
 import dk.easv.tictactoe.bll.BestMoveCalculator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,16 +13,11 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-// Project imports
 import dk.easv.tictactoe.bll.GameBoard;
 import dk.easv.tictactoe.bll.IGameBoard;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-/**
- *
- * @author EASV
- */
 public class ComputerModeController implements Initializable
 {
 
@@ -99,7 +90,7 @@ public class ComputerModeController implements Initializable
     }
 
     @FXML
-    private void handleNewGame(ActionEvent event)
+    private void handleNewGame()
     {
         hasEnded = false;
         game.newGame();
@@ -127,16 +118,10 @@ public class ComputerModeController implements Initializable
 
     private void displayWinner(int winner)
     {
-        String message = "";
-        switch (winner)
+        String message = "Player " + winner + " wins!!!";
+        if (winner == -1)
         {
-            case -1:
-                message = "It's a draw :-(";
-                break;
-
-            default:
-                message = "Player " + winner + " wins!!!";
-                break;
+            message = "It's a draw :-(";
         }
         lblPlayer.setText(message);
     }

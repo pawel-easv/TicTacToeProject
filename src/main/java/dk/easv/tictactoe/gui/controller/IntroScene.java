@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-//1234
+//12345
 public class IntroScene {
     @FXML
     private Button startButton;

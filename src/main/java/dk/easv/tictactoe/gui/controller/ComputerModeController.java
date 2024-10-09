@@ -102,8 +102,8 @@ public class ComputerModeController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         game = new GameBoard();
-        for (Node node : gridPane.getChildren()) {
-            if (node instanceof Button) {
+        for (Node node : gridPane.getChildren()) { // Iterates through every node in gridpane to find
+            if (node instanceof Button) {          // buttons and adds them to list
                 buttons.add((Button) node);
             }
         }
@@ -148,11 +148,11 @@ public class ComputerModeController implements Initializable
 
     private void enemyMove(){
         //int[] bestMove = calculator.findBestMove(game.getBoard(), COMPUTER);
-        int[] bestMove = calculator.findBestMove(game.getBoard(), COMPUTER);
+        int[] bestMove = calculator.findBestMove(game.getBoard(), COMPUTER); // calculates the best move
         int bestRow = bestMove[0];
         int bestCol = bestMove[1];
         game.play(bestRow, bestCol, COMPUTER);
-        int buttonIndex = bestRow*3 + bestCol;
+        int buttonIndex = bestRow*3 + bestCol; //calculates the button index based on the row and column
         playClickSound();
         buttons.get(buttonIndex).setText(player2Icon);
         buttons.get(buttonIndex).setDisable(false);

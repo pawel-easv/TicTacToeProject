@@ -170,7 +170,6 @@ public class TicTacViewController implements Initializable
         } catch (Exception e) {
             e.printStackTrace();
         }
-        lblPlayer.setText(message);
     }
 
     /**
@@ -185,10 +184,6 @@ public class TicTacViewController implements Initializable
         }
     }
 
-    public void setPlayerIcons(String player1Icon, String player2Icon) {
-        this.player1Icon = player1Icon;
-        this.player2Icon = player2Icon;
-    }
 
     public void setCurrentPlayer(Integer player){
         this.player = player;

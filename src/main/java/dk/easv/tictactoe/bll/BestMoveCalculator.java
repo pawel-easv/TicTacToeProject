@@ -30,8 +30,6 @@ public class BestMoveCalculator {
 
     // Evaluate the board for win conditions
     public int evaluate(int[][] board) {
-        for (int row = 0; row < 3; row++) { //check if someone won in rows
-        // Check rows
         for (int row = 0; row < 3; row++) {
             if (board[row][0] == board[row][1] && board[row][1] == board[row][2]) {
                 if (board[row][0] == computer) {
@@ -42,8 +40,7 @@ public class BestMoveCalculator {
             }
         }
 
-        for (int col = 0; col < 3; col++) {//check if someone won in columns
-        // Check columns
+
         for (int col = 0; col < 3; col++) {
             if (board[0][col] == board[1][col] && board[1][col] == board[2][col]) {
                 if (board[0][col] == computer) {

@@ -2,25 +2,32 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="540.0" prefWidth="418.0" style="-fx-background-color: #000000;" stylesheets="@../css/IntroScene.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.tictactoe.gui.controller.IntroScene">
-    <Button fx:id="btnMultiPlayer" layoutX="81.0" layoutY="374.0" mnemonicParsing="false" onAction="#handleMultiPlayerButtonClicked" style="-fx-border-color: grey; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Multiplayer">
+    <Button fx:id="btnMultiPlayer" layoutX="65.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleMultiPlayerButtonClicked" style="-fx-border-color: grey; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Multiplayer">
       <font>
          <Font name="Cambria Math" size="15.0" />
       </font></Button>
-    <Text fill="WHITE" layoutX="81.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: Glow;" text=" Tic Tac Toe " underline="true" wrappingWidth="255.72691345214844">
+    <Text fill="WHITE" layoutX="102.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: Glow;" text=" Tic Tac Toe " wrappingWidth="213.72691345214844">
         <font>
-            <Font name="Bookman Old Style Bold" size="37.0" />
+            <Font size="40.0" />
         </font>
     </Text>
-   <Button fx:id="btnSinglePlayer" onAction="#handleSinglePlayerButtonClick" layoutX="251.0" layoutY="374.0" mnemonicParsing="false" style="-fx-border-color: grey; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Single Player">
+   <Button fx:id="btnSinglePlayer" layoutX="256.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleSinglePlayerButtonClick" style="-fx-border-color: grey; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Single Player">
       <font>
          <Font name="Cambria Math" size="15.0" />
       </font>
    </Button>
+   <ImageView fitHeight="299.0" fitWidth="329.0" layoutX="56.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/grid.png" />
+      </image>
+   </ImageView>
    <effect>
       <Blend />
    </effect>

@@ -1,14 +1,23 @@
 package dk.easv.tictactoe.gui.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class ScoreboardController {
     @FXML
     Label lblRoundNumber = new Label();
 
     @FXML
-    Label lblWinnerPlayer = new Label();
+    Label lblResult = new Label();
 
     @FXML
     Label lblPlayerOneName = new Label();
@@ -22,30 +31,88 @@ public class ScoreboardController {
     @FXML
     Label lblPlayerTwoScore = new Label();
 
-    public static void ScoreBoard() {
+    @FXML
+    Button newGameButton = new Button();
+
+    private int winner;
+
+    private Stage stage;
+
+    private Integer roundNumber;
+    private Integer playerOneScore;
+    private Integer playerTwoScore;
+
+    public void initialize(){
+        lblPlayerOneName.setText("Player 0");
+        lblPlayerTwoName.setText("Player 1");
+
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 
     public void setLblRoundNumber(Integer roundNumber) {
+        this.roundNumber = roundNumber;
         lblRoundNumber.setText(roundNumber.toString());
     }
 
-    public void setLblWinnerPlayer(Integer winnerPlayer) {
-        lblWinnerPlayer.setText(winnerPlayer.toString());
+    public void setLblResult(int winner) {
+        this.winner = winner;
+        String message = "";
+
+        switch (winner)
+        {
+            case -1:
+                message = "It's a draw :-(";
+                break;
+
+            default:
+                message = "Player " + winner + " wins!!!";
+                break;
+        }
+
+        lblResult.setText(message);
     }
 
-    public void setLblPlayerOneName(String playerOneName) {
-        lblPlayerOneName.setText(playerOneName);
+    public void setLblPlayerOneName(int playerOneName) {
+
+
     }
 
     public void setLblPlayerOneScore(Integer playerOneScore) {
+        this.playerOneScore = playerOneScore;
         lblPlayerOneScore.setText(playerOneScore.toString());
     }
 
-    public void setLblPlayerTwoName(String playerTwoName) {
-        lblPlayerTwoName.setText(playerTwoName);
+    public void setLblPlayerTwoName(int playerTwoName) {
+
     }
 
     public void setLblPlayerTwoScore(Integer playerTwoScore) {
+        this.playerTwoScore = playerTwoScore;
         lblPlayerTwoScore.setText(playerTwoScore.toString());
+    }
+
+    public void btnNewGameClicked(ActionEvent actionEvent) throws IOException {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/TicTacView.fxml"));
+            Parent root = loader.load();
+            TicTacViewController controller = loader.getController();
+
+            controller.handleNewGame(actionEvent);
+            controller.setCurrentPlayer(winner);
+            controller.setRoundNumber(this.roundNumber + 1);
+            controller.setPlayerOneScore(this.playerOneScore);
+            controller.setPlayerTwoScore(this.playerTwoScore);
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

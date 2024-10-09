@@ -19,6 +19,7 @@ import javafx.scene.layout.GridPane;
 // Project imports
 import dk.easv.tictactoe.bll.GameBoard;
 import dk.easv.tictactoe.bll.IGameBoard;
+import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -62,6 +63,7 @@ public class TicTacViewController implements Initializable
                     Button btn = (Button) event.getSource();
                     String xOrO = player == 0 ? player1Icon : player2Icon;
                     btn.setText(xOrO);
+                    btn.setDisable(false);
                     setPlayer();
                     playClickSound();
                 if (game.isGameOver()) {
@@ -131,7 +133,7 @@ public class TicTacViewController implements Initializable
      */
     private void setPlayer()
     {
-        lblPlayer.setText(TXT_PLAYER + game.getNextPlayer(player));
+        lblPlayer.setText(TXT_PLAYER + game.getCurrentPlayer());
     }
 
 
@@ -178,6 +180,23 @@ public class TicTacViewController implements Initializable
             Button btn = (Button) n;
             btn.setText("");
         }
+    }
+
+
+    public void setCurrentPlayer(Integer player){
+        this.player = player;
+    }
+
+    public void setRoundNumber(int roundNumber){
+        this.roundNumber = roundNumber;
+    }
+
+    public void setPlayerOneScore(int score){
+        game.setCurrentPlayerScore(score);
+    }
+
+    public void setPlayerTwoScore(int score){
+        game.setOtherPlayerScore(score);
     }
 
     public void setPlayerIcons(String player1Icon, String player2Icon) {

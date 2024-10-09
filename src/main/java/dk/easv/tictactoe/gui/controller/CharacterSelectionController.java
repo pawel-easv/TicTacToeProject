@@ -59,11 +59,11 @@ public class CharacterSelectionController {
             System.out.println(player2Icon);
 
             // Load the new TicTacToe view
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/TicTacView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ComputerModeView.fxml"));
             Parent root = loader.load();
 
             // Get the controller of the loaded view
-            TicTacViewController controller = loader.getController();
+            ComputerModeController controller = loader.getController();
 
             // Pass the selected icons to the new controller
             controller.setPlayerIcons(player1Icon, player2Icon);

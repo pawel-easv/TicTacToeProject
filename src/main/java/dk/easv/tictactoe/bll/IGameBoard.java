@@ -52,6 +52,8 @@ public interface IGameBoard
      */
     void newGame();
 
+    int[][] getBoard();
+
 
     void setScore(int winner);
 

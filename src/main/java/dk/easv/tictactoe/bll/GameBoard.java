@@ -11,6 +11,10 @@ public class GameBoard implements IGameBoard
     private int currentPlayer;
     private int currentTurn = 0;
     private boolean hasDrawn = false;
+
+    private int currentPlayerScore = 0;
+    private int otherPlayerScore = 0;
+
     /**
      * Returns 0 for player 0, 1 for player 1.
      *
@@ -21,6 +25,11 @@ public class GameBoard implements IGameBoard
         player = player == 0 ? 1 : 0;
         currentPlayer = player;
         return player;
+    }
+
+    public int getCurrentPlayer()
+    {
+        return currentPlayer;
     }
 
     /**
@@ -97,5 +106,31 @@ public class GameBoard implements IGameBoard
         board = new int[][]{{-1, -1, -1}, {-1, -1, -1}, {-1, -1, -1}};
         currentTurn = 0;
         hasDrawn = false;
+    }
+
+    public int getCurrentPlayerScore(){
+        return currentPlayerScore;
+    }
+
+    public int getOtherPlayerScore(){
+        return otherPlayerScore;
+    }
+
+    public void setCurrentPlayerScore(int score){
+            this.currentPlayerScore = score;
+    }
+
+    public void setOtherPlayerScore(int score){
+            this.otherPlayerScore = score;
+    }
+
+    public void setScore(int winner){
+        if(winner != -1){
+            if(winner == 0){
+                this.currentPlayerScore += 1;
+            } else if (winner == 1){
+                this.otherPlayerScore += 1;
+            }
+        }
     }
 }

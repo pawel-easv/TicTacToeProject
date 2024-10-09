@@ -16,6 +16,11 @@ public interface IGameBoard
     int getNextPlayer(int player);
 
     /**
+     * @return int Id of the curent player.
+     */
+    int getCurrentPlayer();
+
+    /**
      * Attempts to let the current player play at the given coordinates. If the
      * attempt is succesfull the current player has ended his turn and it is the
      * next players turn.
@@ -46,5 +51,16 @@ public interface IGameBoard
      * Resets the game to a new game state.
      */
     void newGame();
+
+
+    void setScore(int winner);
+
+    int getOtherPlayerScore();
+
+    int getCurrentPlayerScore();
+
+    void setCurrentPlayerScore(int score);
+
+    void setOtherPlayerScore(int score);
 }
 

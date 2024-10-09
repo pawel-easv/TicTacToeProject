@@ -2,21 +2,22 @@
 package dk.easv.tictactoe.gui.controller;
 
 // Java imports
-import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 // Project imports
 import dk.easv.tictactoe.bll.GameBoard;
 import dk.easv.tictactoe.bll.IGameBoard;
+import javafx.stage.Stage;
 
 /**
  *
@@ -36,6 +37,7 @@ public class TicTacViewController implements Initializable
     private IGameBoard game;
     private int player = 0;
     private boolean hasEnded = false;
+    private int roundNumber = 1;
     @FXML
     private void handleButtonAction(ActionEvent event)
     {
@@ -55,7 +57,10 @@ public class TicTacViewController implements Initializable
                     setPlayer();
                 if (game.isGameOver()) {
                     int winner = game.getWinner();
-                    displayWinner(winner);
+                    game.setScore(winner);
+                    int playerOneScore = game.getCurrentPlayerScore();
+                    int playerTwoScore = game.getOtherPlayerScore();
+                    displayScoreboard(winner, event, playerOneScore, playerTwoScore);
                     hasEnded = true;
                 }
             }
@@ -72,7 +77,7 @@ public class TicTacViewController implements Initializable
      * @param event
      */
     @FXML
-    private void handleNewGame(ActionEvent event)
+    public void handleNewGame(ActionEvent event)
     {
         hasEnded = false;
         game.newGame();
@@ -103,28 +108,41 @@ public class TicTacViewController implements Initializable
      */
     private void setPlayer()
     {
-        lblPlayer.setText(TXT_PLAYER + game.getNextPlayer(player));
+        lblPlayer.setText(TXT_PLAYER + game.getCurrentPlayer());
     }
 
 
     /**
      * Finds a winner or a draw and displays a message based
-     * @param winner
+     * @param winner int
      */
-    private void displayWinner(int winner)
+    private void displayScoreboard(int winner, ActionEvent event, int playerOneScore, int playerTwoScore)
     {
-        String message = "";
-        switch (winner)
-        {
-            case -1:
-                message = "It's a draw :-(";
-                break;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/scoreboard.fxml"));
+            Parent root = loader.load();
+            ScoreboardController controller = loader.getController();
 
-            default:
-                message = "Player " + winner + " wins!!!";
-                break;
+            Stage currentStage = (Stage) btnNewGame.getScene().getWindow();
+
+            controller.setStage((Stage) currentStage);
+
+            controller.setLblRoundNumber(this.roundNumber);
+
+//            controller.setLblPlayerOneName(game.getCurrentPlayer());
+//            controller.setLblPlayerTwoName(game.getNextPlayer(player));
+
+            controller.setLblPlayerOneScore(playerOneScore);
+            controller.setLblPlayerTwoScore(playerTwoScore);
+
+            controller.setLblResult(winner);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        lblPlayer.setText(message);
     }
 
     /**
@@ -137,6 +155,22 @@ public class TicTacViewController implements Initializable
             Button btn = (Button) n;
             btn.setText("");
         }
+    }
+
+    public void setCurrentPlayer(Integer player){
+        this.player = player;
+    }
+
+    public void setRoundNumber(int roundNumber){
+        this.roundNumber = roundNumber;
+    }
+
+    public void setPlayerOneScore(int score){
+        game.setCurrentPlayerScore(score);
+    }
+
+    public void setPlayerTwoScore(int score){
+        game.setOtherPlayerScore(score);
     }
 }
 

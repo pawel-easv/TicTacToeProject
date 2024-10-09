@@ -11,7 +11,7 @@
 
 <BorderPane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.tictactoe.gui.controller.TicTacViewController">
    <center>
-      <GridPane fx:id="gridPane" hgap="4.0" vgap="4.0" BorderPane.alignment="CENTER">
+      <GridPane fx:id="gridPane" hgap="4.0" style="-fx-background-color: #ffffff;" vgap="4.0" BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -46,7 +46,7 @@
       </Label>
    </top>
    <bottom>
-      <Button fx:id="btnNewGame" mnemonicParsing="false" onAction="#handleNewGame" text="New Game" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+      <Button visible="false" fx:id="btnNewGame" mnemonicParsing="false" onAction="#handleNewGame" text="New Game" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
          <BorderPane.margin>
             <Insets top="10.0" />
          </BorderPane.margin>

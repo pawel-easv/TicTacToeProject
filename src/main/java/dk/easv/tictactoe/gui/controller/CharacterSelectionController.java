@@ -1,5 +1,4 @@
 package dk.easv.tictactoe.gui.controller;
-
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +20,13 @@ public class CharacterSelectionController {
 
     private String player1Icon = "❌";
     private String player2Icon = "⭕";
+    private final int MULTIPLAYER = 1;
+    private final int SINGLEPLAYER = 0;
+    private int gameMode;
 
+    public void setGameMode(int gameMode) {
+        this.gameMode = gameMode;
+    }
     @FXML
     public void initialize() {
         // List of emoji options
@@ -55,24 +60,23 @@ public class CharacterSelectionController {
             // Update player icons based on ComboBox selections
             this.player1Icon = player1ComboBox.getValue();
             this.player2Icon = player2ComboBox.getValue();
-            System.out.println(player1Icon);
-            System.out.println(player2Icon);
-
-            // Load the new TicTacToe view
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ComputerModeView.fxml"));
-            Parent root = loader.load();
-
-            // Get the controller of the loaded view
-            ComputerModeController controller = loader.getController();
-
-            // Pass the selected icons to the new controller
-            controller.setPlayerIcons(player1Icon, player2Icon);
-
-            // Get the current stage
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
             // Set the new scene and show the stage
-            stage.setScene(new Scene(root));
+            if(gameMode == MULTIPLAYER) {
+                FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/views/TicTacView.fxml"));
+                Parent singlePlayerRoot= loader2.load();
+                TicTacViewController controller2 = loader2.getController();
+                controller2.setPlayerIcons(player1Icon, player2Icon);
+                stage.setScene(new Scene(singlePlayerRoot));
+            }
+            else{
+                FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/views/ComputerModeView.fxml"));
+                Parent multiPlayerRoot = loader1.load();
+                ComputerModeController controller1 = loader1.getController();
+                controller1.setPlayerIcons(player1Icon, player2Icon);
+                stage.setScene(new Scene(multiPlayerRoot));
+            }
             stage.show();
 
         } catch (IOException e) {
@@ -80,5 +84,6 @@ public class CharacterSelectionController {
             logger.log(Level.SEVERE, "Failed to create new Window.", e);
         }
     }
+
 
 }

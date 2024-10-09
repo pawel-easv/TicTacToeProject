@@ -44,9 +44,9 @@ public class TicTacViewController extends GameController implements Initializabl
     private boolean hasEnded = false;
     private int roundNumber = 1;
     @FXML
-    private String player1Icon;
+    private static String player1Icon;
     @FXML
-    private String player2Icon;
+    private static String player2Icon;
     @FXML
     private void handleButtonAction(ActionEvent event)
     {
@@ -71,7 +71,7 @@ public class TicTacViewController extends GameController implements Initializabl
                     game.setScore(winner);
                     int playerOneScore = game.getCurrentPlayerScore();
                     int playerTwoScore = game.getOtherPlayerScore();
-                    super.displayScoreboard(winner, event, playerOneScore, playerTwoScore);
+                    super.displayScoreboard(winner, event, playerOneScore, playerTwoScore, false);
                     hasEnded = true;
                 }
             }
@@ -82,12 +82,6 @@ public class TicTacViewController extends GameController implements Initializabl
         }
     }
 
-
-    /**
-     * Event handler for starting a new game
-     *
-     * @param event
-     */
     @FXML
     public void handleNewGame(ActionEvent event)
     {

@@ -41,7 +41,9 @@ public class ScoreboardController {
     private Integer roundNumber;
     private Integer playerOneScore;
     private Integer playerTwoScore;
-
+    private int gameMode;
+    private final int SINGLEPLAYER = 0;
+    private final int MULTIPLAYER = 1;
     public void initialize(){
         lblPlayerOneName.setText("Player 0");
         lblPlayerTwoName.setText("Player 1");
@@ -97,22 +99,39 @@ public class ScoreboardController {
     public void btnNewGameClicked(ActionEvent actionEvent) throws IOException {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/TicTacView.fxml"));
-            Parent root = loader.load();
-            TicTacViewController controller = loader.getController();
+            if(gameMode == MULTIPLAYER){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/TicTacView.fxml"));
+                Parent root = loader.load();
+                TicTacViewController controller = loader.getController();
+                controller.handleNewGame(actionEvent);
+                controller.setCurrentPlayer(winner);
+                controller.setRoundNumber(this.roundNumber + 1);
+                controller.setPlayerOneScore(this.playerOneScore);
+                controller.setPlayerTwoScore(this.playerTwoScore);
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+            }
+            else if(gameMode == SINGLEPLAYER){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ComputerModeView.fxml"));
+                Parent root = loader.load();
+                ComputerModeController controller = loader.getController();
+                controller.handleNewGame(actionEvent);
+                controller.setCurrentPlayer(winner);
+                controller.setRoundNumber(this.roundNumber + 1);
+                controller.setPlayerOneScore(this.playerOneScore);
+                controller.setPlayerTwoScore(this.playerTwoScore);
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+            }
 
-            controller.handleNewGame(actionEvent);
-            controller.setCurrentPlayer(winner);
-            controller.setRoundNumber(this.roundNumber + 1);
-            controller.setPlayerOneScore(this.playerOneScore);
-            controller.setPlayerTwoScore(this.playerTwoScore);
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-            stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void setGameMode(int gameMode) {
+        this.gameMode = gameMode;
     }
 }

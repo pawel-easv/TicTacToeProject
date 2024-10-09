@@ -24,8 +24,8 @@ public class ComputerModeController  extends GameController implements Initializ
     @FXML private Label lblPlayer;
     @FXML private Button btnNewGame;
     @FXML private GridPane gridPane;
-    @FXML private String player1Icon;
-    @FXML private String player2Icon;
+    @FXML private static String player1Icon;
+    @FXML private static String player2Icon;
 
     private IGameBoard game;
     private int roundNumber = 1;
@@ -73,7 +73,7 @@ public class ComputerModeController  extends GameController implements Initializ
     }
 
     @FXML
-    private void handleNewGame()
+    public void handleNewGame(ActionEvent event)
     {
         hasEnded = false;
         game.newGame();
@@ -137,8 +137,22 @@ public class ComputerModeController  extends GameController implements Initializ
         game.setScore(winner);
         int playerOneScore = game.getCurrentPlayerScore();
         int playerTwoScore = game.getOtherPlayerScore();
-        super.displayScoreboard(winner, event, playerOneScore, playerTwoScore);
+        super.displayScoreboard(winner, event, playerOneScore, playerTwoScore, true);
         hasEnded = true;
     }
+    public void setCurrentPlayer(Integer player){
+        //this.player = player;
+    }
 
+    public void setRoundNumber(int roundNumber){
+        this.roundNumber = roundNumber;
+    }
+
+    public void setPlayerOneScore(int score){
+        game.setCurrentPlayerScore(score);
+    }
+
+    public void setPlayerTwoScore(int score){
+        game.setOtherPlayerScore(score);
+    }
 }

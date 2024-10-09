@@ -11,19 +11,9 @@ import javafx.stage.Stage;
 
 import java.sql.SQLOutput;
 
-/**
- *
- * @author EASV
- */
 public class TicTacToe extends Application
 {
-    /**
-     * @param stage the primary stage for this application, onto which
-     * the application scene can be set.
-     * Applications may create other stages, if needed, but they will not be
-     * primary stages.
-     * @throws Exception
-     */
+
     @Override
     public void start(Stage stage) throws Exception
     {
@@ -38,12 +28,6 @@ public class TicTacToe extends Application
         stage.show();
 
     }
-
-    /**
-     * Entry point of the application
-     *
-     * @param args the command line arguments
-     */
     public static void main(String[] args)
     {
         launch(args);

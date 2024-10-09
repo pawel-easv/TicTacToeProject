@@ -18,9 +18,11 @@ public class GameController {
     @FXML
     private Button btnNewGame;
     private int roundNumber = 1;
+    private final int SINGLEPLAYER = 0;
+    private final int MULTIPLAYER = 1;
     @FXML
     private GridPane gridPane;
-    protected void displayScoreboard(int winner, ActionEvent event, int playerOneScore, int playerTwoScore)
+    protected void displayScoreboard(int winner, ActionEvent event, int playerOneScore, int playerTwoScore, boolean isSinglePlayer)
     {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/scoreboard.fxml"));
@@ -32,7 +34,8 @@ public class GameController {
             controller.setStage((Stage) currentStage);
 
             controller.setLblRoundNumber(this.roundNumber);
-
+            int gameMode = isSinglePlayer ? SINGLEPLAYER: MULTIPLAYER;
+            controller.setGameMode(gameMode);
 //            controller.setLblPlayerOneName(game.getCurrentPlayer());
 //            controller.setLblPlayerTwoName(game.getNextPlayer(player));
 

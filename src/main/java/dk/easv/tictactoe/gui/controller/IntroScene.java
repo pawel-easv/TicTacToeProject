@@ -34,14 +34,14 @@ public class IntroScene {
         }
 
     }
-    @FXML
-    private ImageView grid;
+    //@FXML
+    //private ImageView grid;
 
-    @FXML
-    private ImageView introImage;
+    //@FXML
+    //private ImageView introImage;
 
-    @FXML
-    public void initialize() {
+   // @FXML
+   // public void initialize() {
 //        File file = new File("src/main/resources/images/grid.png");
 
        /*Image image = new ImageIcon("src/main/resources/images/grid.png").getImage();
@@ -102,4 +102,4 @@ introImage*/
 
 
 
-}
+//}

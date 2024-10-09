@@ -2,6 +2,8 @@
 package dk.easv.tictactoe.gui.controller;
 
 // Java imports
+import java.io.File;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,6 +19,8 @@ import javafx.scene.layout.GridPane;
 // Project imports
 import dk.easv.tictactoe.bll.GameBoard;
 import dk.easv.tictactoe.bll.IGameBoard;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 /**
@@ -39,6 +43,10 @@ public class TicTacViewController implements Initializable
     private boolean hasEnded = false;
     private int roundNumber = 1;
     @FXML
+    private String player1Icon;
+    @FXML
+    private String player2Icon;
+    @FXML
     private void handleButtonAction(ActionEvent event)
     {
         try
@@ -52,9 +60,10 @@ public class TicTacViewController implements Initializable
                 if (!hasEnded)
                 {
                     Button btn = (Button) event.getSource();
-                    String xOrO = player == 0 ? "X" : "O";
+                    String xOrO = player == 0 ? player1Icon : player2Icon;
                     btn.setText(xOrO);
                     setPlayer();
+                    playClickSound();
                 if (game.isGameOver()) {
                     int winner = game.getWinner();
                     game.setScore(winner);
@@ -68,6 +77,20 @@ public class TicTacViewController implements Initializable
         } catch (Exception e)
         {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void playClickSound() {
+        try {
+            // Load the sound file
+            String soundPath = "src/main/resources/sounds/btnClick.mp3";
+            Media sound = new Media(new File(soundPath).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+
+            // Play the sound
+            mediaPlayer.play();
+        } catch (Exception e) {
+            System.out.println("Error playing sound: " + e.getMessage());
         }
     }
 
@@ -108,7 +131,7 @@ public class TicTacViewController implements Initializable
      */
     private void setPlayer()
     {
-        lblPlayer.setText(TXT_PLAYER + game.getCurrentPlayer());
+        lblPlayer.setText(TXT_PLAYER + game.getNextPlayer(player));
     }
 
 
@@ -155,6 +178,11 @@ public class TicTacViewController implements Initializable
             Button btn = (Button) n;
             btn.setText("");
         }
+    }
+
+    public void setPlayerIcons(String player1Icon, String player2Icon) {
+        this.player1Icon = player1Icon;
+        this.player2Icon = player2Icon;
     }
 
     public void setCurrentPlayer(Integer player){

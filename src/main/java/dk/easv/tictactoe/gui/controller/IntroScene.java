@@ -7,8 +7,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 //12345
 public class IntroScene {
@@ -29,6 +33,19 @@ public class IntroScene {
             throw new RuntimeException(ex);
         }
 
+    }
+    @FXML
+    private ImageView grid;
+
+    @FXML
+    private ImageView introImage;
+
+    @FXML
+    public void initialize() {
+//        File file = new File("src/main/resources/images/grid.png");
+
+       /*Image image = new ImageIcon("src/main/resources/images/grid.png").getImage();
+introImage*/
     }
 
 

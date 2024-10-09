@@ -5,8 +5,6 @@ package dk.easv.tictactoe.gui.controller;
 import java.io.File;
 import java.lang.reflect.Array;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -204,6 +202,22 @@ public class TicTacViewController implements Initializable
     public void setPlayerIcons(String player1Icon, String player2Icon) {
         this.player1Icon = player1Icon;
         this.player2Icon = player2Icon;
+    }
+
+    public void setCurrentPlayer(Integer player){
+        this.player = player;
+    }
+
+    public void setRoundNumber(int roundNumber){
+        this.roundNumber = roundNumber;
+    }
+
+    public void setPlayerOneScore(int score){
+        game.setCurrentPlayerScore(score);
+    }
+
+    public void setPlayerTwoScore(int score){
+        game.setOtherPlayerScore(score);
     }
 }
 

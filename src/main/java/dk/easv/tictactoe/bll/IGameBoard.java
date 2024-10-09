@@ -7,6 +7,12 @@ package dk.easv.tictactoe.bll;
  */
 public interface IGameBoard
 {
+
+    /**
+     * Returns 0 for player 0, 1 for player 1.
+     *
+     * @return int Id of the next player.
+     */
     int getNextPlayer(int player);
 
     /**
@@ -24,9 +30,26 @@ public interface IGameBoard
      * @return true if the move is accepted, otherwise false. If gameOver ==
      * true this method will always return false.
      */
-    boolean play(int row, int col, int player);
+    boolean play(int col, int row, int player);
+
+    /**
+     * Tells us if the game has ended either by draw or by meeting the winning
+     * condition.
+     *
+     * @return true if the game is over, else it will retun false.
+     */
     boolean isGameOver();
+
+    /**
+     * Gets the id of the winner, -1 if its a draw or if the game is still running.
+     *
+     * @return int id of winner, or -1 if draw or if gameOver() == false.
+     */
     int getWinner();
+
+    /**
+     * Resets the game to a new game state.
+     */
     void newGame();
 
     int[][] getBoard();
@@ -41,7 +64,5 @@ public interface IGameBoard
     void setCurrentPlayerScore(int score);
 
     void setOtherPlayerScore(int score);
-
-    int[][] getBoard();
 }
 

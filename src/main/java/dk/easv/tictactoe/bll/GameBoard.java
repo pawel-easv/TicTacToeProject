@@ -22,11 +22,19 @@ public class GameBoard implements IGameBoard
      */
     public int getNextPlayer(int player)
     {
-        player = player == 0 ? 1 : 0; // switch players
+        player = player == 0 ? 1 : 0;
         currentPlayer = player;
         return player;
     }
 
+    /**
+     * Attempts to let the current player play at the given coordinates. It the
+     * attempt is succesfull the current player has ended his turn and it is the
+     * next players turn.
+     *
+     * @return true if the move is accepted, otherwise false. If gameOver == true
+     * this method will always return false.
+     */
     public int getCurrentPlayer()
     {
         return currentPlayer;
@@ -97,7 +105,7 @@ public class GameBoard implements IGameBoard
     public int getWinner()
     {
         if (hasDrawn) return -1;
-        return currentPlayer; // currentPlayer is the last player to play, so if !hasDrawn then he won
+        return currentPlayer;
     }
 
     /**

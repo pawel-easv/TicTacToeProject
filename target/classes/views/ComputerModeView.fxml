@@ -46,7 +46,7 @@
         </Label>
     </top>
     <bottom>
-        <Button fx:id="btnNewGame" mnemonicParsing="false" onAction="#handleNewGame" text="New Game" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+        <Button visible="false" fx:id="btnNewGame" mnemonicParsing="false" onAction="#handleNewGame" text="New Game" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
             <BorderPane.margin>
                 <Insets top="10.0" />
             </BorderPane.margin>

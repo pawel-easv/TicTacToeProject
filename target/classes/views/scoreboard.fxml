@@ -36,13 +36,6 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="66.0" prefWidth="514.0">
                <children>
-                  <Label fx:id="lblWinnerPlayer">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="177.0" text="won this round">
-                  </Label>
                   <Label fx:id="lblResult">
                      <font>
                         <Font size="24.0" />

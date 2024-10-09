@@ -28,7 +28,7 @@ import javafx.stage.Stage;
  *
  * @author EASV
  */
-public class TicTacViewController implements Initializable
+public class TicTacViewController extends GameController implements Initializable
 {
     @FXML
     private Label lblPlayer;
@@ -65,13 +65,13 @@ public class TicTacViewController implements Initializable
                     btn.setText(xOrO);
                     btn.setDisable(false);
                     setPlayer();
-                    playClickSound();
+                    super.playClickSound();
                 if (game.isGameOver()) {
                     int winner = game.getWinner();
                     game.setScore(winner);
                     int playerOneScore = game.getCurrentPlayerScore();
                     int playerTwoScore = game.getOtherPlayerScore();
-                    displayScoreboard(winner, event, playerOneScore, playerTwoScore);
+                    super.displayScoreboard(winner, event, playerOneScore, playerTwoScore);
                     hasEnded = true;
                 }
             }
@@ -82,19 +82,6 @@ public class TicTacViewController implements Initializable
         }
     }
 
-    private void playClickSound() {
-        try {
-            // Load the sound file
-            String soundPath = "src/main/resources/sounds/btnClick.mp3";
-            Media sound = new Media(new File(soundPath).toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-
-            // Play the sound
-            mediaPlayer.play();
-        } catch (Exception e) {
-            System.out.println("Error playing sound: " + e.getMessage());
-        }
-    }
 
     /**
      * Event handler for starting a new game
@@ -110,17 +97,6 @@ public class TicTacViewController implements Initializable
         clearBoard();
     }
 
-    /**
-     * Initializes a new controller
-     *
-     * @param url
-     * The location used to resolve relative paths for the root object, or
-     * {@code null} if the location is not known.
-     *
-     * @param rb
-     * The resources used to localize the root object, or {@code null} if
-     * the root object was not localized.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -135,53 +111,6 @@ public class TicTacViewController implements Initializable
     {
         lblPlayer.setText(TXT_PLAYER + game.getCurrentPlayer());
     }
-
-
-    /**
-     * Finds a winner or a draw and displays a message based
-     * @param winner int
-     */
-    private void displayScoreboard(int winner, ActionEvent event, int playerOneScore, int playerTwoScore)
-    {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/scoreboard.fxml"));
-            Parent root = loader.load();
-            ScoreboardController controller = loader.getController();
-
-            Stage currentStage = (Stage) btnNewGame.getScene().getWindow();
-
-            controller.setStage((Stage) currentStage);
-
-            controller.setLblRoundNumber(this.roundNumber);
-
-//            controller.setLblPlayerOneName(game.getCurrentPlayer());
-//            controller.setLblPlayerTwoName(game.getNextPlayer(player));
-
-            controller.setLblPlayerOneScore(playerOneScore);
-            controller.setLblPlayerTwoScore(playerTwoScore);
-
-            controller.setLblResult(winner);
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Clears the game board in the GUI
-     */
-    private void clearBoard()
-    {
-        for(Node n : gridPane.getChildren())
-        {
-            Button btn = (Button) n;
-            btn.setText("");
-        }
-    }
-
 
     public void setCurrentPlayer(Integer player){
         this.player = player;
@@ -204,21 +133,6 @@ public class TicTacViewController implements Initializable
         this.player2Icon = player2Icon;
     }
 
-    public void setCurrentPlayer(Integer player){
-        this.player = player;
-    }
-
-    public void setRoundNumber(int roundNumber){
-        this.roundNumber = roundNumber;
-    }
-
-    public void setPlayerOneScore(int score){
-        game.setCurrentPlayerScore(score);
-    }
-
-    public void setPlayerTwoScore(int score){
-        game.setOtherPlayerScore(score);
-    }
 }
 
 

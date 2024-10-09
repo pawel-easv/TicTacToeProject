@@ -18,20 +18,17 @@ import dk.easv.tictactoe.bll.IGameBoard;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-public class ComputerModeController implements Initializable
+public class ComputerModeController  extends GameController implements Initializable
 {
 
-    @FXML
-    private Label lblPlayer;
-
-    @FXML
-    private Button btnNewGame;
-
+    @FXML private Label lblPlayer;
+    @FXML private Button btnNewGame;
     @FXML private GridPane gridPane;
     @FXML private String player1Icon;
     @FXML private String player2Icon;
 
     private IGameBoard game;
+    private int roundNumber = 1;
     private boolean hasEnded = false;
 
     private static final String TXT_PLAYER = "Player: ";
@@ -57,14 +54,14 @@ public class ComputerModeController implements Initializable
                     playerMove(btn);
                     if (game.isGameOver())
                     {
-                        gameOver();
+                        gameOver(event);
                     }
                     else
                     {
                         enemyMove();
                         if (game.isGameOver())
                         {
-                            gameOver();
+                            gameOver(event);
                         }
                     }
                 }
@@ -72,20 +69,6 @@ public class ComputerModeController implements Initializable
         } catch (Exception e)
         {
             System.out.println(e.getMessage());
-        }
-    }
-
-    private void playClickSound() {
-        try {
-            // Load the sound file
-            String soundPath = "src/main/resources/sounds/btnClick.mp3";
-            Media sound = new Media(new File(soundPath).toURI().toString());
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-
-            // Play the sound
-            mediaPlayer.play();
-        } catch (Exception e) {
-            System.out.println("Error playing sound: " + e.getMessage());
         }
     }
 
@@ -126,15 +109,6 @@ public class ComputerModeController implements Initializable
         lblPlayer.setText(message);
     }
 
-    private void clearBoard()
-    {
-        for(Node n : gridPane.getChildren())
-        {
-            Button btn = (Button) n;
-            btn.setText("");
-        }
-    }
-
     public void setPlayerIcons(String player1Icon, String player2Icon) {
         this.player1Icon = player1Icon;
         this.player2Icon = player2Icon;
@@ -157,10 +131,14 @@ public class ComputerModeController implements Initializable
         buttons.get(buttonIndex).setText(player2Icon);
         buttons.get(buttonIndex).setDisable(false);
     }
-    private void gameOver()
+    private void gameOver(ActionEvent event)
     {
         int winner = game.getWinner();
-        displayWinner(winner);
+        game.setScore(winner);
+        int playerOneScore = game.getCurrentPlayerScore();
+        int playerTwoScore = game.getOtherPlayerScore();
+        super.displayScoreboard(winner, event, playerOneScore, playerTwoScore);
         hasEnded = true;
     }
+
 }

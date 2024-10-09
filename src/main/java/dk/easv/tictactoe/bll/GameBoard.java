@@ -26,7 +26,6 @@ public class GameBoard implements IGameBoard
         currentPlayer = player;
         return player;
     }
-    public boolean play(int row, int col, int player)
 
     public int getCurrentPlayer()
     {

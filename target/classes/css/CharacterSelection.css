@@ -6,6 +6,7 @@
     -fx-border-style: hidden hidden solid hidden;
     -fx-border-color: white;
     -fx-border-width: 1;
+    -fx-text-fill: white;
 }
 
 .combo-box {
@@ -20,6 +21,7 @@
     -fx-background-color: black;
     -fx-font-size: 20px;
     -fx-padding: 10px;
+    -fx-text-fill: white;
 }
 
 .combo-box .list-view .list-cell:hover {

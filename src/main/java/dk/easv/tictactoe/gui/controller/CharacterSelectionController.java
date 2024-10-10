@@ -18,8 +18,8 @@ public class CharacterSelectionController {
     @FXML
     private ComboBox<String> player1ComboBox, player2ComboBox;
 
-    private String player1Icon = "❌";
-    private String player2Icon = "⭕";
+    private String player1Icon = "X";
+    private String player2Icon = "O";
     private final int MULTIPLAYER = 1;
     private final int SINGLEPLAYER = 0;
     private int gameMode;
@@ -30,7 +30,7 @@ public class CharacterSelectionController {
     @FXML
     public void initialize() {
         // List of emoji options
-        String[] emojiOptions = {"❌", "⭕", "😊", "😂", "😎", "🥳", "🤖", "👻", "🐱", "🌟"};
+        String[] emojiOptions = {"X", "O", "\uD83D\uDE0A", "\uD83D\uDE02", "\uD83D\uDE0E", "\uD83E\uDD73", "\uD83E\uDD16", "\uD83D\uDC7B", "\uD83D\uDC31", "\uD83C\uDF1F"};
 
         // Set options in ComboBoxes
         player1ComboBox.setItems(FXCollections.observableArrayList(emojiOptions));

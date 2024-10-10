@@ -9,16 +9,16 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="540.0" prefWidth="418.0" style="-fx-background-color: #000000;" stylesheets="@../css/IntroScene.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.tictactoe.gui.controller.IntroScene">
-    <Button fx:id="btnMultiPlayer" layoutX="65.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleMultiPlayerButtonClicked" style="-fx-border-color: grey; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Multiplayer">
+    <Button fx:id="btnMultiPlayer" layoutX="65.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleMultiPlayerButtonClicked" text="Multiplayer">
       <font>
          <Font name="Cambria Math" size="15.0" />
       </font></Button>
-    <Text fill="WHITE" layoutX="121.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: Glow;" text=" Tic Tac Toe " wrappingWidth="175.72691345214844">
+    <Text fill="WHITE" layoutX="118.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: Glow;" text=" Tic Tac Toe " wrappingWidth="181.3269500732422">
         <font>
             <Font size="33.0" />
         </font>
     </Text>
-   <Button fx:id="btnSinglePlayer" layoutX="256.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleSinglePlayerButtonClick" style="-fx-border-color: grey; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Single Player">
+   <Button fx:id="btnSinglePlayer" layoutX="256.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleSinglePlayerButtonClick" text="Single Player">
       <font>
          <Font name="Cambria Math" size="15.0" />
       </font>

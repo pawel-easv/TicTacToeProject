@@ -96,7 +96,7 @@ public class ScoreboardController {
 
         try {
             if(gameMode == MULTIPLAYER){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/TicTacView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/multiplayer_mode.fxml"));
                 Parent root = loader.load();
                 TicTacViewController controller = loader.getController();
                 controller.handleNewGame(actionEvent);
@@ -108,7 +108,7 @@ public class ScoreboardController {
                 stage.setScene(new Scene(root));
             }
             else if(gameMode == SINGLEPLAYER){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/ComputerModeView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/singleplayer_mode.fxml"));
                 Parent root = loader.load();
                 ComputerModeController controller = loader.getController();
                 controller.handleNewGame(actionEvent);

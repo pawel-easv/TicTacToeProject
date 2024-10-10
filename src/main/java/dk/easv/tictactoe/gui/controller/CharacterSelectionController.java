@@ -61,14 +61,14 @@ public class CharacterSelectionController {
 
             // Set the new scene and show the stage
             if(gameMode == MULTIPLAYER) {
-                FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/views/TicTacView.fxml"));
+                FXMLLoader loader2 = new FXMLLoader(getClass().getResource("/views/multiplayer_mode.fxml"));
                 Parent singlePlayerRoot= loader2.load();
                 TicTacViewController controller2 = loader2.getController();
                 controller2.setPlayerIcons(player1Icon, player2Icon);
                 stage.setScene(new Scene(singlePlayerRoot));
             }
             else{
-                FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/views/ComputerModeView.fxml"));
+                FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/views/singleplayer_mode.fxml"));
                 Parent multiPlayerRoot = loader1.load();
                 ComputerModeController controller1 = loader1.getController();
                 controller1.setPlayerIcons(player1Icon, player2Icon);

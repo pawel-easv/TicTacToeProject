@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 //import dk.easv.tictactoe.bll.ChatGPTAPI;
 
-import java.sql.SQLOutput;
 
 public class TicTacToe extends Application
 {
@@ -18,7 +17,7 @@ public class TicTacToe extends Application
     public void start(Stage stage) throws Exception
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/views/IntroScene.fxml"));
+        loader.setLocation(getClass().getResource("/views/intro_scene.fxml"));
         Parent scene = loader.load();
         stage.setScene(new Scene(scene));
         stage.setResizable(false);

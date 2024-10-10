@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="540.0" prefWidth="418.0" style="-fx-background-color: #000000;" stylesheets="@../css/IntroScene.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.tictactoe.gui.controller.IntroScene">
+<AnchorPane prefHeight="540.0" prefWidth="418.0" style="-fx-background-color: #000000;" stylesheets="@../css/intro-scene.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.tictactoe.gui.controller.IntroScene">
     <Button fx:id="btnMultiPlayer" layoutX="65.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleMultiPlayerButtonClicked" text="Multiplayer">
       <font>
          <Font name="Cambria Math" size="15.0" />

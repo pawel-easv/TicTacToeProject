@@ -112,15 +112,22 @@ public class ComputerModeController  extends GameController implements Initializ
         buttons.get(buttonIndex).setDisable(false);
         //setPlayer();
     }
-    private void gameOver(ActionEvent event)
-    {
+    private void gameOver(ActionEvent event) {
         int winner = game.getWinner();
-        game.setScore(winner);
-        int playerTwoScore = game.getCurrentPlayerScore();
-        int playerOneScore = game.getOtherPlayerScore();
+        if (winner != -1) {
+            game.setScore(winner);
+            if (winner == PLAYER) {
+                setPlayerOneScore(game.getCurrentPlayerScore());
+            } else if (winner == COMPUTER) {
+                setPlayerTwoScore(game.getOtherPlayerScore());
+            }
+        }
+        int playerTwoScore = game.getOtherPlayerScore();
+        int playerOneScore = game.getCurrentPlayerScore();
         super.displayScoreboard(winner, event, playerOneScore, playerTwoScore, true);
         hasEnded = true;
     }
+
     public void setCurrentPlayer(Integer player){
         //this.player = player;
     }

@@ -36,12 +36,8 @@ public class GameController {
             controller.setLblRoundNumber(this.roundNumber);
             roundNumber++;
             int gameMode = isSinglePlayer ? SINGLEPLAYER: MULTIPLAYER;
-            if (gameMode == MULTIPLAYER) {
-                controller.lblPlayerOneName.setText("Player 0");
-                controller.lblPlayerTwoName.setText("Player 1");
-            }
 
-            else if(gameMode == SINGLEPLAYER){
+            if(gameMode == SINGLEPLAYER){
                 controller.lblPlayerOneName.setText("Player");
                 controller.lblPlayerTwoName.setText("Computer");
             }

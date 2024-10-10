@@ -66,27 +66,19 @@ public class ScoreboardController {
                 message = "It's a draw :-(";
                 break;
             case 1:
-                message = "Player " + winner + " wins!!!";
+                message = "Player " + String.valueOf( winner+1) + " wins!!!";
             default:
                 if (gameMode == SINGLEPLAYER)
                 {
                     message = "Computer wins!!!!";
                 }
                 else{
-                    message = "Player " + winner + " wins!!!";
+                    message = "Player " + String.valueOf(winner+1) + " wins!!!";
                 }
                 break;
         }
 
         lblResult.setText(message);
-    }
-
-    public void setLblPlayerOneName(String playerOneName) {
-        lblPlayerOneName.setText(playerOneName);
-
-    }
-    public void setLblPlayerTwoNam(String playerTwoName) {
-        lblPlayerTwoName.setText(playerTwoName);
     }
     public void setLblPlayerOneScore(Integer playerOneScore) {
         this.playerOneScore = playerOneScore;

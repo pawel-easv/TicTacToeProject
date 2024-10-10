@@ -103,7 +103,7 @@ public class TicTacViewController extends GameController implements Initializabl
      */
     private void setPlayer()
     {
-        lblPlayer.setText(TXT_PLAYER + game.getCurrentPlayer());
+        lblPlayer.setText(TXT_PLAYER + String.valueOf(game.getCurrentPlayer()+1));
     }
 
     public void setCurrentPlayer(Integer player){

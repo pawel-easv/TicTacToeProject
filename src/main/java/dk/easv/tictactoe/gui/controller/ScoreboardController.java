@@ -45,9 +45,6 @@ public class ScoreboardController {
     private final int SINGLEPLAYER = 0;
     private final int MULTIPLAYER = 1;
     public void initialize(){
-        lblPlayerOneName.setText("Player 0");
-        lblPlayerTwoName.setText("Player 1");
-
     }
 
     public void setStage(Stage stage) {
@@ -68,28 +65,35 @@ public class ScoreboardController {
             case -1:
                 message = "It's a draw :-(";
                 break;
-
-            default:
+            case 1:
                 message = "Player " + winner + " wins!!!";
+            default:
+                if (gameMode == SINGLEPLAYER)
+                {
+                    message = "Computer wins!!!!";
+                }
+                else{
+                    message = "Player " + winner + " wins!!!";
+                }
                 break;
         }
 
         lblResult.setText(message);
     }
 
-    public void setLblPlayerOneName(int playerOneName) {
-
+    public void setLblPlayerOneName(String playerOneName) {
+        lblPlayerOneName.setText(playerOneName);
 
     }
-
+    public void setLblPlayerTwoNam(String playerTwoName) {
+        lblPlayerTwoName.setText(playerTwoName);
+    }
     public void setLblPlayerOneScore(Integer playerOneScore) {
         this.playerOneScore = playerOneScore;
         lblPlayerOneScore.setText(playerOneScore.toString());
     }
 
-    public void setLblPlayerTwoName(int playerTwoName) {
 
-    }
 
     public void setLblPlayerTwoScore(Integer playerTwoScore) {
         this.playerTwoScore = playerTwoScore;

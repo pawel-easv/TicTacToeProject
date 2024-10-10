@@ -17,7 +17,7 @@ import java.io.File;
 public class GameController {
     @FXML
     private Button btnNewGame;
-    private int roundNumber = 1;
+    private static int roundNumber = 1;
     private final int SINGLEPLAYER = 0;
     private final int MULTIPLAYER = 1;
     @FXML
@@ -34,14 +34,21 @@ public class GameController {
             controller.setStage((Stage) currentStage);
 
             controller.setLblRoundNumber(this.roundNumber);
+            roundNumber++;
             int gameMode = isSinglePlayer ? SINGLEPLAYER: MULTIPLAYER;
-            controller.setGameMode(gameMode);
-//            controller.setLblPlayerOneName(game.getCurrentPlayer());
-//            controller.setLblPlayerTwoName(game.getNextPlayer(player));
+            if (gameMode == MULTIPLAYER) {
+                controller.lblPlayerOneName.setText("Player 0");
+                controller.lblPlayerTwoName.setText("Player 1");
+            }
 
+            else if(gameMode == SINGLEPLAYER){
+                controller.lblPlayerOneName.setText("Player");
+                controller.lblPlayerTwoName.setText("Computer");
+            }
+
+            controller.setGameMode(gameMode);
             controller.setLblPlayerOneScore(playerOneScore);
             controller.setLblPlayerTwoScore(playerTwoScore);
-
             controller.setLblResult(winner);
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

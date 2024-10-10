@@ -39,9 +39,6 @@ public class CharacterSelectionController {
         // Set default selections
         player1ComboBox.setValue(player1Icon);
         player2ComboBox.setValue(player2Icon);
-        System.out.println(player1ComboBox.getValue());
-        System.out.println(player2ComboBox.getValue());
-
         // Set listener to update player icons when a selection is made
         player1ComboBox.setOnAction(event -> player1Icon = player1ComboBox.getValue());
         player2ComboBox.setOnAction(event -> player2Icon = player2ComboBox.getValue());

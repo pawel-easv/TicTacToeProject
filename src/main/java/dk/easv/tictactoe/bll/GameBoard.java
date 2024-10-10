@@ -105,7 +105,7 @@ public class GameBoard implements IGameBoard
     public int getWinner()
     {
         if (hasDrawn) return -1;
-        return currentPlayer;
+        return getNextPlayer(currentPlayer);
     }
 
     /**

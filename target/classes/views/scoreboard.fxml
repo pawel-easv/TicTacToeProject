@@ -10,11 +10,11 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="513.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.tictactoe.gui.controller.ScoreboardController">
    <children>
-      <VBox prefHeight="400.0" prefWidth="514.0">
+      <VBox prefHeight="400.0" prefWidth="514.0" style="-fx-background-color: #000000;">
          <children>
             <HBox alignment="CENTER" prefHeight="66.0" prefWidth="514.0">
                <children>
-                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="264.0" text="RESULT">
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="264.0" style="-fx-text-fill: #ffffff;" text="RESULT">
                      <font>
                         <Font name="Calibri Light" size="25.0" />
                      </font>
@@ -23,12 +23,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="66.0" prefWidth="514.0">
                <children>
-                  <Label text="Round: ">
+                  <Label text="Round: " textFill="WHITE">
                      <font>
                         <Font name="Calibri Light" size="25.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblRoundNumber" text="0">
+                  <Label fx:id="lblRoundNumber" text="0" textFill="WHITE">
                      <font>
                         <Font size="27.0" />
                      </font>
@@ -37,7 +37,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="66.0" prefWidth="514.0">
                <children>
-                  <Label fx:id="lblResult">
+                  <Label fx:id="lblResult" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -59,7 +59,7 @@
                         <Font size="32.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="46.0" prefWidth="20.0" text=":">
+                  <Label alignment="CENTER" prefHeight="46.0" prefWidth="20.0" text=":" textFill="WHITE">
                      <font>
                         <Font size="30.0" />
                      </font>

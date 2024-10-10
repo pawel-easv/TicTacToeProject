@@ -60,21 +60,12 @@ public class TicTacViewController extends GameController implements Initializabl
             if (game.play(c, r, currentPlayer)) {
                 if (!hasEnded)
                 {
-                    Button btn = (Button) event.getSource();
-                    String xOrO = currentPlayer == 0 ? player1Icon : player2Icon;
-                    btn.setText(xOrO);
-                    btn.setDisable(true);
-                    setPlayer();
-                    super.playClickSound();
-                if (game.isGameOver()) {
-                    int winner = game.getWinner(1);
-                    game.setScore(winner, 1);
-                    int playerOneScore = game.getCurrentPlayerScore();
-                    int playerTwoScore = game.getOtherPlayerScore();
-                    super.displayScoreboard(winner, event, playerOneScore, playerTwoScore, false);
-                    hasEnded = true;
+                    playerMove(event);
+                    if (game.isGameOver())
+                    {
+                        gameOver(event);
+                    }
                 }
-            }
             }
         } catch (Exception e)
         {
@@ -97,7 +88,25 @@ public class TicTacViewController extends GameController implements Initializabl
         game = new GameBoard();
         setPlayer();
     }
+    private void playerMove(ActionEvent event)
+    {
+        Button btn = (Button) event.getSource();
+        String xOrO = currentPlayer == 0 ? player1Icon : player2Icon;
+        btn.setText(xOrO);
+        btn.setDisable(true);
+        setPlayer();
+        super.playClickSound();
+    }
 
+    private void gameOver(ActionEvent event)
+    {
+        int winner = game.getWinner(1);
+        game.setScore(winner, 1);
+        int playerOneScore = game.getCurrentPlayerScore();
+        int playerTwoScore = game.getOtherPlayerScore();
+        super.displayScoreboard(winner, event, playerOneScore, playerTwoScore, false);
+        hasEnded = true;
+    }
     /**
      * Set the next currentPlayer
      */

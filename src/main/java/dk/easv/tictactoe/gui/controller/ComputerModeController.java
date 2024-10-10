@@ -119,10 +119,6 @@ public class ComputerModeController  extends GameController implements Initializ
         hasEnded = true;
     }
 
-    public void setCurrentPlayer(Integer player){
-        //this.player = player;
-    }
-
     public void setRoundNumber(int roundNumber){
         this.roundNumber = roundNumber;
     }

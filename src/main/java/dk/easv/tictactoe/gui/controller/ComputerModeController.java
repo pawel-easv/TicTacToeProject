@@ -30,8 +30,7 @@ public class ComputerModeController  extends GameController implements Initializ
     private IGameBoard game;
     private int roundNumber = 1;
     private boolean hasEnded = false;
-
-    private static final String TXT_PLAYER = "Player: ";
+    private int currentPlayer = 0;
     private final int PLAYER = 0;
     private final int COMPUTER = 1;
     private final BestMoveCalculator calculator = new BestMoveCalculator();
@@ -77,7 +76,6 @@ public class ComputerModeController  extends GameController implements Initializ
     {
         hasEnded = false;
         game.newGame();
-        setPlayer();
         clearBoard();
     }
 
@@ -90,23 +88,6 @@ public class ComputerModeController  extends GameController implements Initializ
                 buttons.add((Button) node);
             }
         }
-        setPlayer();
-    }
-
-    private void setPlayer()
-    {
-        lblPlayer.setText(TXT_PLAYER + game.getNextPlayer(PLAYER));
-    }
-
-
-    private void displayWinner(int winner)
-    {
-        String message = "Player " + winner + " wins!!!";
-        if (winner == -1)
-        {
-            message = "It's a draw :-(";
-        }
-        lblPlayer.setText(message);
     }
 
     public void setPlayerIcons(String player1Icon, String player2Icon) {
@@ -116,7 +97,6 @@ public class ComputerModeController  extends GameController implements Initializ
     private void playerMove(Button btn){
         btn.setText(player1Icon);
         btn.setDisable(false);
-        setPlayer();
         playClickSound();
     }
 
@@ -130,13 +110,14 @@ public class ComputerModeController  extends GameController implements Initializ
         playClickSound();
         buttons.get(buttonIndex).setText(player2Icon);
         buttons.get(buttonIndex).setDisable(false);
+        //setPlayer();
     }
     private void gameOver(ActionEvent event)
     {
         int winner = game.getWinner();
         game.setScore(winner);
-        int playerOneScore = game.getCurrentPlayerScore();
-        int playerTwoScore = game.getOtherPlayerScore();
+        int playerTwoScore = game.getCurrentPlayerScore();
+        int playerOneScore = game.getOtherPlayerScore();
         super.displayScoreboard(winner, event, playerOneScore, playerTwoScore, true);
         hasEnded = true;
     }

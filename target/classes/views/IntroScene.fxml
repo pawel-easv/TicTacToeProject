@@ -13,7 +13,7 @@
       <font>
          <Font name="Cambria Math" size="15.0" />
       </font></Button>
-    <Text fill="WHITE" layoutX="121.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: Glow;" text=" Tic Tac Toe " wrappingWidth="175.72691345214844">
+    <Text fill="WHITE" layoutX="118.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: Glow;" text=" Tic Tac Toe " wrappingWidth="181.3269500732422">
         <font>
             <Font size="33.0" />
         </font>

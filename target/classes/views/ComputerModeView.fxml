@@ -39,14 +39,14 @@
         </GridPane>
     </center>
     <top>
-        <Label fx:id="lblPlayer" text="1" textFill="WHITE" BorderPane.alignment="CENTER">
+        <Label fx:id="lblPlayer" text="Computer Mode" textFill="WHITE" BorderPane.alignment="CENTER">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
     </top>
     <bottom>
-        <Button visible="false" fx:id="btnNewGame" mnemonicParsing="false" onAction="#handleNewGame" text="New Game" textFill="WHITE" BorderPane.alignment="CENTER_RIGHT">
+        <Button fx:id="btnNewGame" mnemonicParsing="false" onAction="#handleNewGame" text="New Game" textFill="WHITE" visible="false" BorderPane.alignment="CENTER_RIGHT">
             <BorderPane.margin>
                 <Insets top="10.0" />
             </BorderPane.margin>

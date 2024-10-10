@@ -112,7 +112,7 @@ public class ScoreboardController {
                 Parent root = loader.load();
                 ComputerModeController controller = loader.getController();
                 controller.handleNewGame(actionEvent);
-                controller.setCurrentPlayer(winner);
+                controller.setCurrentPlayer(0);
                 controller.setRoundNumber(this.roundNumber + 1);
                 controller.setPlayerOneScore(this.playerOneScore);
                 controller.setPlayerTwoScore(this.playerTwoScore);

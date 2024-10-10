@@ -45,7 +45,7 @@ public interface IGameBoard
      *
      * @return int id of winner, or -1 if draw or if gameOver() == false.
      */
-    int getWinner();
+    int getWinner(int gameMode);
 
     /**
      * Resets the game to a new game state.
@@ -55,7 +55,7 @@ public interface IGameBoard
     int[][] getBoard();
 
 
-    void setScore(int winner);
+    void setScore(int winner, int gameMode);
 
     int getOtherPlayerScore();
 

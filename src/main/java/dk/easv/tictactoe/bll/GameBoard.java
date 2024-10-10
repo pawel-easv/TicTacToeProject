@@ -8,7 +8,7 @@ package dk.easv.tictactoe.bll;
 public class GameBoard implements IGameBoard
 {
     private int[][] board = {{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
-    private int currentPlayer;
+    private static int currentPlayer;
     private int currentTurn = 0;
     private boolean hasDrawn = false;
 
@@ -102,10 +102,11 @@ public class GameBoard implements IGameBoard
      *
      * @return int id of winner, or -1 if draw.
      */
-    public int getWinner()
+    public int getWinner(int gameMode)
     {
         if (hasDrawn) return -1;
-        return getNextPlayer(currentPlayer);
+        if (gameMode == 1) return getNextPlayer(currentPlayer);
+        else return currentPlayer;
     }
 
     /**
@@ -137,12 +138,20 @@ public class GameBoard implements IGameBoard
             this.otherPlayerScore = score;
     }
 
-    public void setScore(int winner){
+    public void setScore(int winner, int gameMode){
         if(winner != -1){
+            if(gameMode == 1){
             if(winner == 0){
                 this.currentPlayerScore += 1;
             } else if (winner == 1){
                 this.otherPlayerScore += 1;
+            }}
+            else{
+                if(winner == 1){
+                    this.currentPlayerScore += 1;
+                } else if (winner == 0){
+                    this.otherPlayerScore += 1;
+                }
             }
         }
     }

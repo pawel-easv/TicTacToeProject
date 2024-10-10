@@ -30,7 +30,6 @@ public class ComputerModeController  extends GameController implements Initializ
     private IGameBoard game;
     private int roundNumber = 1;
     private boolean hasEnded = false;
-    private int currentPlayer = 0;
     private final int PLAYER = 0;
     private final int COMPUTER = 1;
     private final BestMoveCalculator calculator = new BestMoveCalculator();
@@ -110,12 +109,11 @@ public class ComputerModeController  extends GameController implements Initializ
         playClickSound();
         buttons.get(buttonIndex).setText(player2Icon);
         buttons.get(buttonIndex).setDisable(false);
-        //setPlayer();
     }
     private void gameOver(ActionEvent event) {
-        int winner = game.getWinner();
+        int winner = game.getWinner(0);
         if (winner != -1) {
-            game.setScore(winner);
+            game.setScore(winner, 0);
             if (winner == PLAYER) {
                 setPlayerOneScore(game.getCurrentPlayerScore());
             } else if (winner == COMPUTER) {

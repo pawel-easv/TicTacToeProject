@@ -40,7 +40,7 @@ public class TicTacViewController extends GameController implements Initializabl
     private GridPane gridPane;
     private static final String TXT_PLAYER = "Player: ";
     private IGameBoard game;
-    private int player = 0;
+    private int currentPlayer = 0;
     private boolean hasEnded = false;
     private int roundNumber = 1;
     @FXML
@@ -56,19 +56,19 @@ public class TicTacViewController extends GameController implements Initializabl
             Integer col = GridPane.getColumnIndex((Node) event.getSource());
             int r = (row == null) ? 0 : row;
             int c = (col == null) ? 0 : col;
-            player = game.getNextPlayer(player);
-            if (game.play(c, r, player)) {
+            currentPlayer = game.getNextPlayer(currentPlayer);
+            if (game.play(c, r, currentPlayer)) {
                 if (!hasEnded)
                 {
                     Button btn = (Button) event.getSource();
-                    String xOrO = player == 0 ? player1Icon : player2Icon;
+                    String xOrO = currentPlayer == 0 ? player1Icon : player2Icon;
                     btn.setText(xOrO);
                     btn.setDisable(true);
                     setPlayer();
                     super.playClickSound();
                 if (game.isGameOver()) {
-                    int winner = game.getWinner();
-                    game.setScore(winner);
+                    int winner = game.getWinner(1);
+                    game.setScore(winner, 1);
                     int playerOneScore = game.getCurrentPlayerScore();
                     int playerTwoScore = game.getOtherPlayerScore();
                     super.displayScoreboard(winner, event, playerOneScore, playerTwoScore, false);
@@ -99,15 +99,15 @@ public class TicTacViewController extends GameController implements Initializabl
     }
 
     /**
-     * Set the next player
+     * Set the next currentPlayer
      */
     private void setPlayer()
     {
         lblPlayer.setText(TXT_PLAYER + String.valueOf(game.getCurrentPlayer()+1));
     }
 
-    public void setCurrentPlayer(Integer player){
-        this.player = player;
+    public void setCurrentPlayer(Integer currentPlayer){
+        this.currentPlayer = currentPlayer;
     }
 
     public void setRoundNumber(int roundNumber){

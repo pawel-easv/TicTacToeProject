@@ -1,8 +1,9 @@
-#imageContainer{
-    -fx-background-image: url("/../resources/images/grid.png");
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center;
-    -fx-background-size: cover;
+.pane {
+    -fx-background-color: black;
+}
+
+.label {
+    -fx-text-fill: white;
 }
 
 .button {

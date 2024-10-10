@@ -1,10 +1,6 @@
 
 package dk.easv.tictactoe.bll;
 
-/**
- *
- * @author EASV
- */
 public class GameBoard implements IGameBoard
 {
     private int[][] board = {{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
@@ -15,11 +11,7 @@ public class GameBoard implements IGameBoard
     private int currentPlayerScore = 0;
     private int otherPlayerScore = 0;
 
-    /**
-     * Returns 0 for player 0, 1 for player 1.
-     *
-     * @return int Id of the next player.
-     */
+
     public int getNextPlayer(int player)
     {
         player = player == 0 ? 1 : 0;
@@ -27,14 +19,6 @@ public class GameBoard implements IGameBoard
         return player;
     }
 
-    /**
-     * Attempts to let the current player play at the given coordinates. It the
-     * attempt is succesfull the current player has ended his turn and it is the
-     * next players turn.
-     *
-     * @return true if the move is accepted, otherwise false. If gameOver == true
-     * this method will always return false.
-     */
     public int getCurrentPlayer()
     {
         return currentPlayer;

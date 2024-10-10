@@ -72,7 +72,7 @@ public class BestMoveCalculator {
     // This method evaluates move, it simulates potential continuation till the game is ended by
     // one of the sides, and returns the best possible outcome
     public int minimax(int[][] board, boolean isMax) {
-        int score = evaluate(board);
+        int score = evaluate(board); // check if game is over, if not simulates next move
 
         if (score == 10 || score == -10) {
             return score;
@@ -86,8 +86,7 @@ public class BestMoveCalculator {
                 for (int j = 0; j < 3; j++) {
                     if (board[i][j] == -1) {
                         board[i][j] = computer;
-
-                        best = Math.max(best, minimax(board, false));
+                        best = Math.max(best, minimax(board, false)); // simulates the move and then deletes it
                         board[i][j] = -1;
                     }
                 }

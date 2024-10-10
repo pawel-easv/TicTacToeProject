@@ -112,14 +112,9 @@ public class ComputerModeController  extends GameController implements Initializ
     }
     private void gameOver(ActionEvent event) {
         int winner = game.getWinner(0);
-        if (winner != -1) {
-            game.setScore(winner, 0);
-            if (winner == PLAYER) {
-                setPlayerOneScore(game.getCurrentPlayerScore());
-            } else if (winner == COMPUTER) {
-                setPlayerTwoScore(game.getOtherPlayerScore());
-            }
-        }
+        game.setScore(winner, 0);
+        setPlayerOneScore(game.getCurrentPlayerScore());
+        setPlayerTwoScore(game.getOtherPlayerScore());
         int playerTwoScore = game.getOtherPlayerScore();
         int playerOneScore = game.getCurrentPlayerScore();
         super.displayScoreboard(winner, event, playerOneScore, playerTwoScore, true);

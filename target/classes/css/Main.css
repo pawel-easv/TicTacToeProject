@@ -17,7 +17,9 @@
     -fx-font-size: 50px;
     -fx-font-weight: bold;
 }
-
+.button-tictac:disabled{
+    -fx-opacity: 1;
+}
 .button:hover {
     -fx-background-color: #343434;
 }

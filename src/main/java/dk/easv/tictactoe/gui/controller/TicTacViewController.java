@@ -63,7 +63,7 @@ public class TicTacViewController extends GameController implements Initializabl
                     Button btn = (Button) event.getSource();
                     String xOrO = player == 0 ? player1Icon : player2Icon;
                     btn.setText(xOrO);
-                    btn.setDisable(false);
+                    btn.setDisable(true);
                     setPlayer();
                     super.playClickSound();
                 if (game.isGameOver()) {

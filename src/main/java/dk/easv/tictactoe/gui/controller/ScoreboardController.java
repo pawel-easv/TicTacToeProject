@@ -113,6 +113,10 @@ public class ScoreboardController {
                 ComputerModeController controller = loader.getController();
                 controller.handleNewGame(actionEvent);
                 controller.setRoundNumber(this.roundNumber + 1);
+                if (winner == 0){
+                    controller.enemyMove();
+                    System.out.println("computer won");
+                }
                 controller.setPlayerOneScore(this.playerOneScore);
                 controller.setPlayerTwoScore(this.playerTwoScore);
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

@@ -29,6 +29,7 @@ public class ComputerModeController  extends GameController implements Initializ
 
     private IGameBoard game;
     private int roundNumber = 1;
+    private int currentPlayer = 0;
     private boolean hasEnded = false;
     private final int PLAYER = 0;
     private final int COMPUTER = 1;
@@ -99,7 +100,7 @@ public class ComputerModeController  extends GameController implements Initializ
         playClickSound();
     }
 
-    private void enemyMove(){
+    public void enemyMove(){
         //int[] bestMove = calculator.findBestMove(game.getBoard(), COMPUTER);
         int[] bestMove = calculator.findBestMove(game.getBoard(), COMPUTER); // calculates the best move
         int bestRow = bestMove[0];
@@ -110,7 +111,7 @@ public class ComputerModeController  extends GameController implements Initializ
         buttons.get(buttonIndex).setText(player2Icon);
         buttons.get(buttonIndex).setDisable(false);
     }
-    private void gameOver(ActionEvent event) {
+    private void gameOver(ActionEvent event) throws InterruptedException {
         int winner = game.getWinner(0);
         game.setScore(winner, 0);
         int playerTwoScore = game.getOtherPlayerScore();

@@ -13,9 +13,9 @@
       <font>
          <Font name="Cambria Math" size="15.0" />
       </font></Button>
-    <Text fill="WHITE" layoutX="102.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: Glow;" text=" Tic Tac Toe " wrappingWidth="213.72691345214844">
+    <Text fill="WHITE" layoutX="121.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: Glow;" text=" Tic Tac Toe " wrappingWidth="175.72691345214844">
         <font>
-            <Font size="40.0" />
+            <Font size="33.0" />
         </font>
     </Text>
    <Button fx:id="btnSinglePlayer" layoutX="256.0" layoutY="465.0" mnemonicParsing="false" onAction="#handleSinglePlayerButtonClick" style="-fx-border-color: grey; -fx-background-radius: 5px; -fx-border-radius: 5px;" text="Single Player">

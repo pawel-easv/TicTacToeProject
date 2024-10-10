@@ -13,7 +13,7 @@ public class GameBoard implements IGameBoard
     private boolean hasDrawn = false;
 
     private int currentPlayerScore = 0;
-    private int otherPlayerScore = 0;
+    private int otherPlayerScore = 9;
 
     /**
      * Returns 0 for player 0, 1 for player 1.

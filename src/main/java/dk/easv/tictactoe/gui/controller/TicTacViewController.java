@@ -91,7 +91,7 @@ public class TicTacViewController extends GameController implements Initializabl
     private void playerMove(ActionEvent event)
     {
         Button btn = (Button) event.getSource();
-        String xOrO = currentPlayer == 0 ? player1Icon : player2Icon;
+        String xOrO = currentPlayer == 0 ? player2Icon : player1Icon;
         btn.setText(xOrO);
         btn.setDisable(true);
         setPlayer();

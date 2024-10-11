@@ -133,6 +133,8 @@ public class ScoreboardController {
     public void btnNewGameClicked(ActionEvent actionEvent)  {
 try{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/intro_scene.fxml"));
+        FXMLLoader loaderSingle = new FXMLLoader(getClass().getResource("/views/singleplayer_mode.fxml"));
+
         Parent root = loader.load();
     Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
     stage.setScene(new Scene(root));

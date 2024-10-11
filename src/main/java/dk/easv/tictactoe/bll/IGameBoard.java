@@ -64,5 +64,7 @@ public interface IGameBoard
     void setCurrentPlayerScore(int score);
 
     void setOtherPlayerScore(int score);
+
+    void setCurrentPlayer();
 }
 

@@ -83,6 +83,7 @@ public class ComputerModeController  extends GameController implements Initializ
     public void initialize(URL url, ResourceBundle rb)
     {
         game = new GameBoard();
+        game.setCurrentPlayer();
         for (Node node : gridPane.getChildren()) { // Iterates through every node in gridpane to find
             if (node instanceof Button) {          // buttons and adds them to list
                 buttons.add((Button) node);

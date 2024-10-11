@@ -92,7 +92,7 @@ public class ScoreboardController {
         lblPlayerTwoScore.setText(playerTwoScore.toString());
     }
 
-    public void btnNewGameClicked(ActionEvent actionEvent) throws IOException {
+    public void btnContinuePlayingClicked(ActionEvent actionEvent) throws IOException {
 
         try {
             if(gameMode == MULTIPLAYER){
@@ -128,6 +128,18 @@ public class ScoreboardController {
             e.printStackTrace();
         }
 
+    }
+
+    public void btnNewGameClicked(ActionEvent actionEvent)  {
+try{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/intro_scene.fxml"));
+        Parent root = loader.load();
+    Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+    stage.setScene(new Scene(root));
+
+        stage.show();
+    } catch (IOException e){
+}
     }
 
     public void setGameMode(int gameMode) {

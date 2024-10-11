@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,7 +18,10 @@ public class CharacterSelectionController {
 
     @FXML
     private ComboBox<String> player1ComboBox, player2ComboBox;
-
+    @FXML
+    private Label lblPlayerOneText;
+    @FXML
+    private Label lblPlayerTwoText;
     private String player1Icon = "❌";
     private String player2Icon = "⭕";
     private final int MULTIPLAYER = 1;
@@ -51,7 +55,10 @@ public class CharacterSelectionController {
     public String getPlayer2Icon() {
         return player2Icon;
     }
-
+    public void setPlayersLabels() {
+        lblPlayerOneText.setText("Player");
+        lblPlayerTwoText.setText("Computer");
+    }
     public void continueSelection(ActionEvent actionEvent) throws IOException {
         try {
             // Update player icons based on ComboBox selections
@@ -69,7 +76,7 @@ public class CharacterSelectionController {
             }
             else{
                 FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/views/singleplayer_mode.fxml"));
-                Parent multiPlayerRoot = loader1.load();
+                Parent multiPlayerRoot = loader1.load();;
                 ComputerModeController controller1 = loader1.getController();
                 controller1.setPlayerIcons(player1Icon, player2Icon);
                 stage.setScene(new Scene(multiPlayerRoot));

@@ -36,6 +36,9 @@ public class IntroScene {
             Parent root = loader.load();
             CharacterSelectionController controller = loader.getController();
             controller.setGameMode(gameMode);
+            if(gameMode == SINGLEPLAYER) {
+                controller.setPlayersLabels();
+            }
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

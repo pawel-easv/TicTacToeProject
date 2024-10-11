@@ -73,6 +73,18 @@ public class TicTacViewController extends GameController implements Initializabl
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
     @FXML
     public void handleNewGame(ActionEvent event)
     {

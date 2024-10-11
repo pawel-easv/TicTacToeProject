@@ -62,7 +62,7 @@
                   </VBox>
                   <Label alignment="CENTER" prefHeight="46.0" prefWidth="14.0" text=":" textFill="WHITE">
                      <font>
-                        <Font size="30.0" />
+                        <Font size="48.0" />
                      </font>
                   </Label>
                   <VBox alignment="CENTER" prefHeight="154.0" prefWidth="250.0">
